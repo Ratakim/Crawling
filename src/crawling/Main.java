@@ -18,6 +18,7 @@ public class Main {
 			doc = Jsoup.connect(url).get();
 		} catch (IOException e) {
 			e.printStackTrace();
+			
 		}
 		//select를 이용하여 원하는 태그를 선택한다. select는 원하는 값을 가져오기 위한 중요한 기능이다.
 		Elements element = doc.select("div.wrap-movie-chart");    

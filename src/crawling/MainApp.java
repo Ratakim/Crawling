@@ -40,18 +40,18 @@ public class MainApp {
 		// 4. 실행 및 실행 데이터를 Response 객체에 담음
 		HttpResponse response = httpClient.execute(http);
 
-		// 5. Response 받은 데이터 중, DOM 데이터를 가져와 Entity에 담음
+		// 5. Response 받은 데이터 중, DOM 데이터를 가져와 Entity(http header(본문에 대한 정보 및 요청/응답)와 http body를 담은 클래스)에 담음
 		HttpEntity entity = response.getEntity();
 
 		// 6. Charset을 알아내기 위해 DOM의 컨텐트 타입을 가져와 담고 Charset을 가져옴
-		ContentType contentType = ContentType.getOrDefault(entity);
+		ContentType contentType = ContentType.getOrDefault(entity);		
 
 		Charset charset = contentType.getCharset();
 
-		// 7. DOM 데이터를 한 줄씩 읽기 위해 Reader에 담음 (InputStream / Buffered 중 선택은 개인취향)
+		// 7. DOM 데이터를 한 줄씩 읽기 위해 Reader에 담음, byte타입으로 읽어지는 값을 char 타입으로 처리한뒤 String 즉 문자열로 저장할 수 있게 한다는 의미 
 		BufferedReader br = new BufferedReader(new InputStreamReader(entity.getContent(), charset));
 
-		// 8. 가져온 DOM 데이터를 담기위한 그릇
+		// 8. 가져온 DOM 데이터를 담기위한 그릇, 그냥 String을 쓰면 값이 현저하게 느려짐
 		StringBuffer sb = new StringBuffer();
 
 		// 9. DOM 데이터 가져오기
@@ -59,12 +59,13 @@ public class MainApp {
 
 		while ((line = br.readLine()) != null) {
 
+			//.append 값 뒤에 붙힘
 			sb.append(line + "\n");
 
 		}
 
 		// 10. 가져온 DOM을 보자
-	    System.out.println(sb.toString());
+	    //System.out.println(sb.toString());
 
 		// 11. Jsoup으로 파싱해보자.
 		//Document doc = Jsoup.parse(sb.toString()); 
