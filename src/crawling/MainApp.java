@@ -21,15 +21,15 @@ public class MainApp {
 
 	public static String getCurrentData() {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		SimpleDateFormat sted = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
-		return sdf.format(new Date());
+		return sted.format(new Date());
 	}
 
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 
-		// 1. 가져오기전 시간 찍기
-		System.out.println(" Start Date : " + getCurrentData());
+		// 1. 시작 시간 체크
+		System.out.println(" 시작 : " + getCurrentData());
 
 		// 2. 가져올 HTTP 주소 넣기
 		HttpPost http = new HttpPost("https://www.naver.com/");
@@ -75,8 +75,8 @@ public class MainApp {
 	
 	    //System.out.println(doc2.data());
 
-		// 12. 얼마나 걸린지 체크
-		System.out.println(" End Date : " + getCurrentData());
+		// 11. 끝 시간 체크
+		System.out.println(" 끝 : " + getCurrentData());
 
 	}
 
